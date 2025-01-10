@@ -1,22 +1,35 @@
+import { ConnectionMySQL } from "../../config/db.js"
+
+const connection = ConnectionMySQL.connectingToMysql()
+
 export class MySqlConnector {
     user = {
-        getAll(){},
-        getById(){},
-        update(id,body){},
-        delete(id){},
+        async getAll(){
+            try{
+                const [results, fields] = await connection.query(
+                    'SELECT * FROM student'
+                )
+                console.log(results)
+            }catch(err){
+                console.log(err)
+            }
+        },
+        async getById(){},
+        async update(id,body){},
+        async delete(id){},
     }
 
     blog = {
-        getAll(){},
-        getById(){},
-        update(id,body){},
-        delete(id){},
+        async getAll(){},
+        async getById(){},
+        async update(id,body){},
+        async delete(id){},
     }
 
     comment = {
-        getAll(){},
-        getById(){},
-        update(id,body){},
-        delete(id){},
+        async getAll(){},
+        async getById(){},
+        async update(id,body){},
+        async delete(id){},
     }
 }
