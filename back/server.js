@@ -1,32 +1,35 @@
 import express from "express";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import userRouter from "./routes/users.js";
 import blogsRouter from "./routes/blogs.js";
 import commentsRouter from "./routes/comments.js";
-import { ConnectionMySQL } from "./config/db.js";
+import { MySqlConnector } from "./models/mysql/mysqlConnector.js";
 
-const app = express()
-dotenv.config()
+export let connectionDb = null;
 
-app.get("/", (req,res) => {
-    res.send("<h1>Hello</h1")
-})
+const app = express();
+dotenv.config();
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello</h1");
+});
 
 //ROUTES v1
-app.use("/api/v1/users/",userRouter)
-app.use("/api/v1/blogs/",blogsRouter)
-app.use("/api/v1/comments/",commentsRouter)
+app.use("/api/v1/users/", userRouter);
+app.use("/api/v1/blogs/", blogsRouter);
+app.use("/api/v1/comments/", commentsRouter);
 
 //MANGING ERRORS
-app.use((req,res,next) => {
-    return res.status(404).json({
-        message:"Not found",
-        data:[]
-   })
-})
+app.use((req, res, next) => {
+  return res.status(404).json({
+    message: "Not found",
+    data: [],
+  });
+});
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`)
-    console.log(`http://localhost:${process.env.PORT}`)
-    ConnectionMySQL.connectingToMysql()
-})
+app.listen(process.env.PORT, async () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+  console.log(`http://localhost:${process.env.PORT}`);
+  const connect = await new MySqlConnector();
+  connect.user.getAll();
+});
