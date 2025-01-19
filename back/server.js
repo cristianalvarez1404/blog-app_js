@@ -3,10 +3,11 @@ import dotenv from "dotenv"
 import userRouter from "./routes/users.js";
 import blogsRouter from "./routes/blogs.js";
 import commentsRouter from "./routes/comments.js";
-import { ConnectionMySQL } from "./config/db.js";
 
 const app = express()
 dotenv.config()
+app.use(express.json())
+
 
 app.get("/", (req,res) => {
     res.send("<h1>Hello</h1")
@@ -25,8 +26,7 @@ app.use((req,res,next) => {
    })
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
     console.log(`Server running on port ${process.env.PORT}`)
     console.log(`http://localhost:${process.env.PORT}`)
-    ConnectionMySQL.connectingToMysql()
 })

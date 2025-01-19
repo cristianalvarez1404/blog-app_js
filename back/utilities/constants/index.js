@@ -1,3 +1,5 @@
-export const USER = "user"
-export const BLOG = "blog"
-export const COMMENT = "comment"
+const USER = "user"
+const BLOG = "blog"
+const COMMENT = "comment"
+
+export {USER,BLOG,COMMENT}

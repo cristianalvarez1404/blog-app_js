@@ -16,7 +16,7 @@ const UserSchema = mongoose.Schema({
     },
     posts:[
         {
-            post_id:mongoose.Schema.Types.ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             ref:'Post'
         }
     ]
