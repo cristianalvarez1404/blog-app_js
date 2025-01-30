@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const SingOut = () => {
-  return (
-    <div>SingOut</div>
-  )
-}
+const SingUp = () => {
+  return <div>SingUp</div>;
+};
 
-export default SingOut
+export default SingUp;
