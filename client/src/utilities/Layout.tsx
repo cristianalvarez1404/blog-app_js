@@ -5,11 +5,11 @@ import Footer from "../components/Footer";
 
 const Layout = () => {
   return (
-    <>
+    <div className="w-full">
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 
