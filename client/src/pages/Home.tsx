@@ -39,7 +39,11 @@ const Home = () => {
             <Task />
           </div>
           <div className="flex justify-center">
-            <img className="rotate-60 w-[800px]" src="./img4.png" alt="" />
+            <img
+              className="rotate-60 w-1/2 object-contain"
+              src="./img4.png"
+              alt=""
+            />
           </div>
         </div>
       </div>

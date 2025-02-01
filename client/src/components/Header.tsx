@@ -15,7 +15,7 @@ const Header = () => {
             <p>Dashboard</p>
           </a>
           <a href="/signin">
-            <p>sign in</p>
+            <p>Sign in</p>
           </a>
         </div>
       </div>

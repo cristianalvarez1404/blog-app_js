@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingIn = () => {
+const Register = () => {
   return (
     <div className="h-[calc(100vh-103.92px)] flex items-center justify-center">
       <div className="w-1/3 h-[80%] bg-white flex-col">
@@ -27,9 +27,9 @@ const SingIn = () => {
             />
             <p className="w-[90%] text-sm mt-10 text-violet-700">
               Don't have an account?
-              <a className="font-bold" href="/signup">
+              <a className="font-bold" href="/register">
                 {" "}
-                Signup
+                Signup now
               </a>
             </p>
           </form>
@@ -39,4 +39,4 @@ const SingIn = () => {
   );
 };
 
-export default SingIn;
+export default Register;
