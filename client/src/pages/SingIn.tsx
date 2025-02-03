@@ -25,7 +25,7 @@ const SingIn = () => {
               type="submit"
               placeholder="Login Now"
             />
-            <p className="w-[90%] text-sm mt-10 text-violet-700">
+            <p className="w-[90%] text-sm mt-10 mx-5 text-violet-700">
               Don't have an account?
               <a className="font-bold" href="/signup">
                 {" "}

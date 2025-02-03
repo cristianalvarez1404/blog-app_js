@@ -40,7 +40,7 @@ const Home = () => {
           </div>
           <div className="flex justify-center">
             <img
-              className="rotate-60 w-1/3 object-contain rounded-full"
+              className="rotate-60 w-1/3 object-contain rounded-full mb-10"
               src="./img4.png"
               alt=""
             />

@@ -1,15 +1,20 @@
 import React from "react";
 
-const Register = () => {
+const SingUp = () => {
   return (
     <div className="h-[calc(100vh-103.92px)] flex items-center justify-center">
       <div className="w-1/3 h-[80%] bg-white flex-col">
         <div className="flex-col justify-center p-10">
-          <h2 className="font-bold text-2xl text-gray-500">Sign-in</h2>
+          <h2 className="font-bold text-2xl text-gray-500">Sign-Up</h2>
           <form
             action="/"
             className="w-full h-[500px] flex-col justify-center shadow-lg inset-shadow-indigo-300"
           >
+            <input
+              className="shadow-lg p-4 block w-[90%] mx-auto mt-5"
+              type="text"
+              placeholder="Enter your username"
+            />
             <input
               className="shadow-lg p-4 block w-[90%] mx-auto mt-5"
               type="email"
@@ -25,11 +30,11 @@ const Register = () => {
               type="submit"
               placeholder="Login Now"
             />
-            <p className="w-[90%] text-sm mt-10 text-violet-700">
-              Don't have an account?
-              <a className="font-bold" href="/register">
+            <p className="w-[90%] text-sm mt-10 mx-5 text-violet-700">
+              Do you have an account?
+              <a className="font-bold" href="/signin">
                 {" "}
-                Signup now
+                Signin
               </a>
             </p>
           </form>
@@ -39,4 +44,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SingUp;
