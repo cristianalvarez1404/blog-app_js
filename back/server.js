@@ -3,17 +3,25 @@ import dotenv from "dotenv";
 import userRouter from "./routes/users.js";
 import blogsRouter from "./routes/blogs.js";
 import commentsRouter from "./routes/comments.js";
+import cors from 'cors'
 
 const app = express()
 dotenv.config()
 app.use(express.json())
 
+const corsOptions = {
+  origin:"*",
+  methods:"GET,POST,PUT,DELETE",
+  allowedHeaders:"Content-Type,Authorization"
+}
+
+app.use(cors(corsOptions))
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello</h1");
 });
 
-//ROUTES v1
+//ROUTES v1 
 app.use("/api/v1/users/", userRouter);
 app.use("/api/v1/blogs/", blogsRouter);
 app.use("/api/v1/comments/", commentsRouter);

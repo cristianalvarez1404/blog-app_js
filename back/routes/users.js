@@ -1,9 +1,9 @@
 import express from 'express'
-import { createUser } from '../controllers/users/index.js'
+import { createUser, getUsers } from '../controllers/users/index.js'
 
 const router = express.Router()
 
-router.get("/", (req,res,next) => res.send("Hello world from  router"))
+router.get("/", getUsers)
 router.post("/", createUser)
 router.patch("/", () => {})
 router.delete("/", () => {})

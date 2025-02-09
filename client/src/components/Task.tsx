@@ -4,7 +4,7 @@ function Task() {
   return (
     <a
       href="/task1"
-      className="w-[350px] p-8 rounded-xl shadow-2xl mb-12 cursor-pointer"
+      className="w-[25%] p-8 rounded-xl shadow-2xl mb-12 cursor-pointer"
     >
       <div>
         <h2 className="text-2xl font-bold text-gray-500">Task 1</h2>
