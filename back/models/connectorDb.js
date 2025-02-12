@@ -12,6 +12,8 @@ class ConnectorDb {
 
     getById(id){return this.connector[this.entity].getById(id)}
 
+    getByEmail(email){return this.connector[this.entity].getByEmail(email)}
+
     update(id,body){this.connector[this.entity].update(id,body)}
     
     delete(id){this.connector[this.entity].delete(id)}

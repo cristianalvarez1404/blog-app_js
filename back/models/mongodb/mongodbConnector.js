@@ -28,7 +28,16 @@ export class MongoDbConnector {
             },
             async getById(id){
                 try{
-                    const user = await UserModel.findOne({_id:id})
+                    const user = await UserModel.findOne({_id:id}).select('-password')
+                    return user
+                }catch(error){
+                    throw error
+                } 
+            },
+            async getByEmail(email){
+                try{
+                    const user = await UserModel.findOne({email}).select('-password')
+                    console.log(user)
                     return user
                 }catch(error){
                     throw error

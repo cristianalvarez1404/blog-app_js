@@ -4,8 +4,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+type userData = {
+  username:string | any,
+  email:string | any,
+  password:string | any
+}
+
+
 const SingUp = () => {
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<userData>({
     username: "",
     email: "",
     password: "",
@@ -14,25 +21,26 @@ const SingUp = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate()
 
-  const { data, isLoading, error } = useQuery({
+  /*const { data, isLoading, error } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axios.get("http://localhost:3000/api/v1/users/");
       return res.data;
     },
-  });
+  });*/
 
   const mutation = useMutation({
     mutationFn: async () => {
       return await axios.post("http://localhost:3000/api/v1/users/", userInfo);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       toast.success("User created succesfully!")
+      localStorage.setItem('user',JSON.stringify({_id:data.data.data._id}))
       setTimeout(() => navigate("/signin"),4000)
     },
-    onError:() => {
-      toast.error("User has not been created");
+    onError:(error) => {
+      toast.error(error?.response?.data?.message);
     },
   });
 
@@ -41,7 +49,7 @@ const SingUp = () => {
 
     const form = new FormData(e.target);
 
-    const newUserInfo = {
+    const newUserInfo:userData = {
       username: form.get("username") || "",
       email: form.get("email") || "",
       password: form.get("password") || "",
@@ -57,7 +65,7 @@ const SingUp = () => {
         <div className="flex-col justify-center p-10">
           <h2 className="font-bold text-2xl text-gray-500">Sign-Up</h2>
           
-          {isLoading ? <p>Loading...</p> : <form
+          <form
             action="/"
             className="w-full h-[500px] flex-col justify-center shadow-lg inset-shadow-indigo-300"
             onSubmit={handleSubmit}
@@ -94,7 +102,6 @@ const SingUp = () => {
               </a>
             </p>
           </form>
-}
           {/* {error && <p>Error: {error.message}</p>} */}
           {/* {data && <p>User created successfully</p>} */}
 
