@@ -12,19 +12,18 @@ const Header = () => {
   useEffect(() => {
       const load = () => {
         let id = localStorage.getItem('user') 
-        console.log(id)
         if (id !== null) {
           setUserId(JSON.parse(id))
-          console.log(userId)
         } else return
-        
       }
       load()
-  },[userId])
+  },[])
 
   const handleClick = () => {
     localStorage.removeItem('user')
     navigate("/")
+    navigate(0)
+    window.scrollTo(0,0)
   }
 
 
@@ -44,9 +43,12 @@ const Header = () => {
           {!userId? <a href="/signin">
             <p>Sign in</p>
           </a> : <a className="cursor-pointer" onClick={handleClick}>Logout</a>}
+          {
+            userId && 
           <a href="/dashboard">
             <img className="w-10 h-10 bg-amber-300 rounded-full " src="./profile.png" alt="" />
           </a>
+          }
         </div>
       </div>
     </div>

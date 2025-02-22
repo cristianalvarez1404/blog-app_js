@@ -22,12 +22,15 @@ const SingIn = () => {
       toast.success("User logged succesfully!",{
         autoClose:1000
       })
-      console.log(data.data)
       localStorage.setItem('user',JSON.stringify({_id:data.data._id}))
-      setTimeout(() => navigate("/"),1000)
+      setTimeout(() => {
+        navigate("/")
+        navigate(0)
+        window.scrollTo(0,0)
+      },1000)
     },
     onError:(error) => {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.message);
     },
   });
 

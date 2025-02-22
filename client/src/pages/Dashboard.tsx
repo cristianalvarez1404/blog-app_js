@@ -1,17 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TaskRow from '../components/TaskRow'
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    const load = () => {
+      let id = localStorage.getItem('user') 
+      if (!id) navigate("/signin") 
+    }
+    load()
+  })
+
+  const handleClick = () => {
+    localStorage.removeItem('user')
+    navigate("/")
+    navigate(0)
+    window.scrollTo(0,0)
+  }
+
+
   return (
     <div className='w-full flex'>
       <div className='h-screen bg-gray-100 w-[20%]'>
         <a href='/' className='block p-5 shadow-2xs hover:bg-gray-600 cursor-pointer hover:text-white transition-colors'>
           <p><i className="mr-3 text-gray-400 text-10 fa-solid fa-house"></i>Home</p>
         </a>
-        <a href='/tasks' className='block p-5 shadow-2xs hover:bg-gray-600 cursor-pointer hover:text-white transition-colors'>
-          <p><i className="mr-3 text-gray-400 text-10 fa-solid fa-eye"></i>Check tasks</p>
+        <a href='/write' className='block p-5 shadow-2xs hover:bg-gray-600 cursor-pointer hover:text-white transition-colors'>
+          <p><i className="mr-3 text-gray-400 text-10 fa-solid fa-eye"></i>Add task</p>
         </a>
-        <a href='/' className='block p-5 shadow-2xs hover:bg-gray-600 cursor-pointer hover:text-white transition-colors'>
+        <a onClick={handleClick} className='block p-5 shadow-2xs hover:bg-gray-600 cursor-pointer hover:text-white transition-colors'>
           <p> <i className="mr-3 text-gray-400 text-10 fa-solid fa-right-from-bracket"></i>Logout</p>
         </a>
       </div>

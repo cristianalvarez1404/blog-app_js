@@ -36,11 +36,10 @@ const SingUp = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       toast.success("User created succesfully!")
-      localStorage.setItem('user',JSON.stringify({_id:data.data.data._id}))
       setTimeout(() => navigate("/signin"),4000)
     },
     onError:(error) => {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.message);
     },
   });
 

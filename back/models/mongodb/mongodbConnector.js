@@ -43,8 +43,14 @@ export class MongoDbConnector {
                     throw error
                 } 
             },
-            async update(id,body){
-                const user = await UserModel.findByIdAndUpdate(id,{...body})
+            async update(id,body,params=null){
+                let user;
+                
+                if(!body){
+                    user = await UserModel.findByIdAndUpdate(id,{...body},{new:true})
+                }else {
+                    user = await UserModel.updateOne({_id:id},params)
+                }
                 return user;
             },
             async delete(id){
@@ -54,6 +60,15 @@ export class MongoDbConnector {
         }
     
         this.blog = {
+            async create(data){
+                try{
+                    const task = await BlogModel.create(data)
+                    return task
+                }catch(err){
+                    throw err
+                }
+            },
+
             async getAll(){
                 try{
                     const users = await BlogModel.find()

@@ -8,7 +8,6 @@ function Tasks() {
     queryKey:['user'],
     queryFn: async () => {
       const res = await axios.get('http://localhost:3000/api/v1/users/')
-      console.log(res)
       return res.data[0]
     }
   })
