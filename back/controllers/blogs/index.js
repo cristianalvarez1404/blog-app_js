@@ -1,18 +1,17 @@
 import { ConnectorDbBlog, ConnectorDbUser } from "../../models/connectorDb.js";
 import { MongoDbConnector } from "../../models/mongodb/mongodbConnector.js";
 import joi from 'joi'
-import { BLOG, USER } from "../../utilities/constants/index.js";
 import mongoose from "mongoose";
 
-const connectorBlog = new ConnectorDbBlog(MongoDbConnector,BLOG)
-const connectorUser = new ConnectorDbUser(MongoDbConnector,USER)
+const connectorBlog = new ConnectorDbBlog(MongoDbConnector)
+const connectorUser = new ConnectorDbUser(MongoDbConnector)
 
 export const createTask = async (req, res,next) => {
     const taskInfo = req.body
 
     const schema = joi.object({
-        title:joi.string().min(3).required(),
-        description:joi.string().min(5).required(),
+        title:joi.string().required(),
+        description:joi.string().required(),
         postedBy:joi.string().required()
     })
 
@@ -33,9 +32,8 @@ export const createTask = async (req, res,next) => {
 
     try{
         const newTask = await connectorBlog.create(value)
-        const updateUser = await connectorUser.update(newTask.postedBy,null,{$addToSet:{posts:newTask._id}})
-        
-        console.log(updateUser)
+        const updateUser = await connectorUser.update(newTask.postedB,null,{$addToSet:{posts:newTask._id}})
+
         return res.status(200).json(newTask)
 
     }catch(err){

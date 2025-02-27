@@ -9,12 +9,14 @@ const BlogSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    postedBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required:true
-    }
+    postedBy:
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User",
+            required:true
+        }
+
     
-},{timeStamps:true})
+},{timestamps:true})
 
 export default mongoose.model("Post",BlogSchema)

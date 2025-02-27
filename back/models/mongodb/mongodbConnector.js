@@ -44,9 +44,11 @@ export class MongoDbConnector {
                 } 
             },
             async update(id,body,params=null){
+
+                console.log(params.query)
                 let user;
                 
-                if(!body){
+                if(!params){
                     user = await UserModel.findByIdAndUpdate(id,{...body},{new:true})
                 }else {
                     user = await UserModel.updateOne({_id:id},params)
