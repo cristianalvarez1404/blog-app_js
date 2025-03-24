@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Task from "../components/Task";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const requestPosts = async () => {
+      const req = await axios.get("http://localhost:3000/api/v1/blogs");
+      setPosts(req.data);
+    };
+    requestPosts();
+  }, []);
+
   return (
     <div className="w-[80%] mt-12 mr-auto ml-auto">
       <div className="flex-col items-center">
@@ -30,14 +41,11 @@ const Home = () => {
             <i className="text-2xl text-gray-400  mx-10 fa-solid fa-list-check"></i>
           </a>
           <div className="flex gap-6 flex-wrap justify-between mt-20">
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
+            {posts ? (
+              posts.map((post) => <Task postInfo={post} />)
+            ) : (
+              <div>No posts</div>
+            )}
           </div>
           <div className="flex justify-center">
             <img

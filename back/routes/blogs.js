@@ -1,11 +1,11 @@
-import express from 'express'
-import { createTask } from '../controllers/blogs/index.js'
+import express from "express";
+import { createTask, getTasks } from "../controllers/blogs/index.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/", () => {})
-router.post("/", createTask)
-router.patch("/", () => {})
-router.delete("/", () => {})
+router.get("/", getTasks);
+router.post("/", createTask);
+router.patch("/", () => {});
+router.delete("/", () => {});
 
-export default router
+export default router;
