@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TaskRow from '../components/TaskRow'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Dashboard = () => {
   const navigate = useNavigate()
+  const [posts, setPosts] = useState([])
 
 
   useEffect(() => {
@@ -12,6 +14,14 @@ const Dashboard = () => {
       if (!id) navigate("/signin") 
     }
     load()
+  })
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const req = await axios.get("http://localhost:3000/api/v1/blogs");
+      if(req.data) setPosts(req.data);
+    }
+    getPosts()
   })
 
   const handleClick = () => {
@@ -50,12 +60,10 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody className='text-center'>
-            <TaskRow/>
-            <TaskRow/>
-            <TaskRow/>
-            <TaskRow/>
-            <TaskRow/>
-            <TaskRow/>
+            {
+              posts && posts.map((post,index) => <TaskRow post={post} key={index}/> ) 
+            }
+  
           </tbody>
         </table>
         </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,14 @@ const Write = () => {
 
   const quillRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const load = () => {
+      let id = localStorage.getItem("user");
+      if (!id) navigate("/signin");
+    };
+    load();
+  });
 
   const handleChange = (e: any) => {
     setDescription(e);
