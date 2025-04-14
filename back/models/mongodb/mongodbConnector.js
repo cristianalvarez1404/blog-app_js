@@ -91,8 +91,8 @@ export class MongoDbConnector {
         }
       },
       async update(id, body) {
-        const user = await BlogModel.findByIdAndUpdate(id, { ...body });
-        return user;
+        const newBlog = await BlogModel.findByIdAndUpdate(id, { ...body });
+        return newBlog;
       },
       async delete(id) {
         await BlogModel.findByIdAndDelete(id);

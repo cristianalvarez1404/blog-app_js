@@ -50,3 +50,43 @@ export const getTasks = async (req, res, next) => {
     return res.status(400).json(err.message);
   }
 };
+
+export const editTask = async (req, res, next) => {
+  const taskInfo = req.body;
+  const idTask = req.params.id;
+
+  const schema = joi.object({
+    title: joi.string().required(),
+    description: joi.string().required(),
+  });
+
+  let data = {
+    title: taskInfo.title,
+    description: taskInfo.description,
+  };
+
+  const { error, value } = schema.validate(data);
+
+  if (error) {
+    return res.status(400).json(error.details);
+  }
+
+  try {
+    const updateTask = await connectorBlog.update(idTask, data);
+
+    return res.status(200).json(updateTask);
+  } catch (err) {
+    return res.status(400).json(err.message);
+  }
+};
+
+export const deleteTask = async (req, res, next) => {
+  const idTask = req.params.id;
+  try {
+    const updateTask = await connectorBlog.delete(idTask);
+
+    return res.status(200).json(updateTask);
+  } catch (err) {
+    return res.status(400).json(err.message);
+  }
+};

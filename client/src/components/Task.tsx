@@ -38,7 +38,7 @@ type blog = {
 function Task({ postInfo }: blog) {
   return (
     <a
-      href="/task1"
+      href="/dashboard"
       className="w-[25%] p-8 rounded-xl shadow-2xl mb-12 cursor-pointer"
     >
       <div>
@@ -46,15 +46,16 @@ function Task({ postInfo }: blog) {
         <img className="" src="./img2.png" alt="" />
         <p className="text-gray-600">{postInfo.description}</p>
         <small className="text-gray-400 w-0.5">
-          Posted by : {postInfo.postedBy}
+          Posted by : {postInfo.postedBy.substring(0, 10)}
         </small>
+        <br />
         <small className=" text-gray-400">08:00am</small>
       </div>
       <div className="flex justify-end gap-2 text-xl">
-        <a href="/">
+        <a href="/dashboard">
           <i className="fa-regular fa-pen-to-square text-green-500"></i>
         </a>
-        <a href="/">
+        <a href="/dashboard">
           <i className="fa-solid fa-trash text-red-400"></i>
         </a>
       </div>
