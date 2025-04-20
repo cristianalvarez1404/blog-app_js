@@ -73,14 +73,14 @@ const TaskRow = ({ post }: post) => {
 
   return (
     <tr className="flex-1 border-b border-gray-200 hover:bg-gray-50">
-      <td className="px-6 py-4 text-left">
-        <p className="line-clamp-2">{post._id.substring(0, 6) + "..."}</p>
+      <td className="hidden md:block px-2 py-2 md:px-6 md:py-4 text-left md:text-md">
+        <p className="line-clamp-2 md:text-md">{post._id.substring(0, 6) + "..."}</p>
       </td>
       {editTask ? (
         <>
-          <td className="text-center outline-none">
+          <td className="text-xs md:text-md text-center outline-none">
             <input
-              className="border-2 border-gray-400 p-1 mr-1"
+              className="w-[50px] md:w-auto border-0 md:border-2 border-gray-400 p-1 mr-1"
               type="text"
               value={newTask}
               onChange={(e) => setNewTask(e.target.value)}
@@ -88,13 +88,13 @@ const TaskRow = ({ post }: post) => {
           </td>
         </>
       ) : (
-        <td className="px-6 py-4 text-left">{post.title}</td>
+        <td className="text-xs md:text-md px-2 py-2 md:px-6 md:py-4 text-left">{post.title}</td>
       )}
       {editTask ? (
         <>
-          <td className="text-center outline-none">
+          <td className="text-xs md:text-md text-center outline-none">
             <input
-              className="border-2 border-gray-400 p-1"
+              className="w-[50px] md:w-auto border-2 border-gray-400 p-1"
               type="text"
               value={newDesc}
               onChange={(e) => setNewDesc(e.target.value)}
@@ -102,13 +102,13 @@ const TaskRow = ({ post }: post) => {
           </td>
         </>
       ) : (
-        <td className="px-6 py-4 text-left">{post.description}</td>
+        <td className="text-xs md:text-md px-2 py-2 md:px-6 md:py-4 text-left">{post.description}</td>
       )}
 
-      <td className="px-6 py-4 text-left">
+      <td className="hidden md:block px-6 py-4 text-left md:text-md">
         {post.postedBy.substring(0, 6) + "..."}
       </td>
-      <td className="text-center">
+      <td className="text-center p-1 md:p-5">
         <a className="cursor-pointer" onClick={() => setEditTask(true)}>
           {editTask ? (
             <i
@@ -120,7 +120,7 @@ const TaskRow = ({ post }: post) => {
           )}
         </a>
       </td>
-      <td className="text-center">
+      <td className="text-center p-1 md:p-5">
         {editTask ? (
           <a className="cursor-pointer" onClick={() => setEditTask(false)}>
             <i className="fa-solid fa-ban text-red-400"></i>

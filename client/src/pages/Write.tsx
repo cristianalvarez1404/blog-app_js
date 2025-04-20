@@ -59,11 +59,11 @@ const Write = () => {
               }}
             >
               <i className="text-red-400 mr-5 fa-solid fa-pencil"></i>
-              <span>Write your task</span>
+              <span className="text-sm md:text-2xl">Write your task</span>
             </div>
           ) : (
             <input
-              className="outline-none"
+              className="text-sm md:text-2xl outline-none"
               type="text"
               placeholder="Write your title"
               value={title}
@@ -76,7 +76,7 @@ const Write = () => {
         <div className="w-full">
           <ReactQuill
             ref={quillRef}
-            className="h-[65vh]"
+            className="h-[50vh] md:h-[65vh]"
             value={description}
             onChange={handleChange}
             theme="snow"

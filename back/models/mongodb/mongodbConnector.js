@@ -37,7 +37,6 @@ export class MongoDbConnector {
       async getByEmail(email) {
         try {
           const user = await UserModel.findOne({ email }).select("-password");
-          console.log(user);
           return user;
         } catch (error) {
           throw error;

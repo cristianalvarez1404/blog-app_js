@@ -60,7 +60,7 @@ const SingUp = () => {
   };
   return (
     <div className="h-[calc(100vh-103.92px)] flex items-center justify-center mb-10">
-      <div className="w-1/3 h-[80%] bg-white flex-col">
+      <div className="w-full lg:w-1/3 h-[80%] bg-white flex-col">
         <div className="flex-col justify-center p-10">
           <h2 className="font-bold text-2xl text-gray-500">Sign-Up</h2>
           

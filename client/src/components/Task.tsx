@@ -39,7 +39,7 @@ function Task({ postInfo }: blog) {
   return (
     <a
       href="/dashboard"
-      className="w-[25%] p-8 rounded-xl shadow-2xl mb-12 cursor-pointer"
+      className="w-[95%] md:w-[25%] p-8 rounded-xl shadow-2xl mb-12 cursor-pointer"
     >
       <div>
         <h2 className="text-2xl font-bold text-gray-500">{postInfo.title}</h2>
